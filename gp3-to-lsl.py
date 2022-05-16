@@ -98,7 +98,6 @@ if __name__ == "__main__":
     channels = info_gaze.desc().append_child("channels")
 
     # time
-    channels.append_child("channel").append_child_value("label", "EPOCHTIME").append_child_value("unit", "seconds").append_child_value("type", "gaze")
     channels.append_child("channel").append_child_value("label", "CNT").append_child_value("unit", "integer").append_child_value("type", "gaze")
     channels.append_child("channel").append_child_value("label", "TIME").append_child_value("unit", "seconds").append_child_value("type", "gaze")
     channels.append_child("channel").append_child_value("label", "TIMETICK").append_child_value("unit", "nanoseconds").append_child_value("type", "gaze")
@@ -155,9 +154,6 @@ if __name__ == "__main__":
     # Continuously stream data and push each data sample to the LSL
     count = 0
     while True:
-
-        # Reset data values to 0
-        t = time.time()
         
         # Read data
         msg = receive(s)
@@ -171,14 +167,12 @@ if __name__ == "__main__":
 
         # print heading
         heading = list(e.attrib.keys())
-        heading.insert(1, 'EPOCHTIME') # epochtime is added
         if count == 0:
             print("Received Variable : ", heading)
-            # expected result : ['CNT', 'EPOCHTIME', 'TIME', 'TIME_TICK', 'FPOGX', 'FPOGY', 'FPOGS', 'FPOGD', 'FPOGID', 'FPOGV', 'LPOGX', 'LPOGY', 'LPOGV', 'RPOGX', 'RPOGY', 'RPOGV', 'BPOGX', 'BPOGY', 'BPOGV', 'LPCX', 'LPCY', 'LPD', 'LPS', 'LPV', 'RPCX', 'RPCY', 'RPD', 'RPS', 'RPV', 'CX', 'CY', 'CS', 'BKID', 'BKDUR', 'BKPMIN', 'USER']
+            # expected result : ['CNT', 'TIME', 'TIME_TICK', 'FPOGX', 'FPOGY', 'FPOGS', 'FPOGD', 'FPOGID', 'FPOGV', 'LPOGX', 'LPOGY', 'LPOGV', 'RPOGX', 'RPOGY', 'RPOGV', 'BPOGX', 'BPOGY', 'BPOGV', 'LPCX', 'LPCY', 'LPD', 'LPS', 'LPV', 'RPCX', 'RPCY', 'RPD', 'RPS', 'RPV', 'BKID', 'BKDUR', 'BKPMIN', 'CX', 'CY', 'CS', 'USER']
 
         # Push data to LSL
         samplegaze = [float(val) if val != '' else 0 for val in list(e.attrib.values())]
-        samplegaze.insert(1, t) # epochtime is added
         outlet_gaze.push_sample(samplegaze)
 
         count += 1
