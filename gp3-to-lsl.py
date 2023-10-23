@@ -91,7 +91,7 @@ if __name__ == "__main__":
 
 
     # Initialize LSL entry
-    num_column = 36
+    num_column = 35
     sampling_rate = 150
     info_gaze = lsl.StreamInfo('GazepointEyeTracker', 'gaze', num_column, sampling_rate, 'float32', 'gazepoint' + sn)
     info_gaze.desc().append_child_value("manufacturer", "Gazepoint")
