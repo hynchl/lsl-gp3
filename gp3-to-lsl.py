@@ -133,15 +133,16 @@ if __name__ == "__main__":
     channels.append_child("channel").append_child_value("label", "RPS").append_child_value("unit", "scalar").append_child_value("type", "gaze")
     channels.append_child("channel").append_child_value("label", "RPV").append_child_value("unit", "boolean").append_child_value("type", "gaze")
 
+    #cursor
+    channels.append_child("channel").append_child_value("label", "CX").append_child_value("unit", "pixels").append_child_value("type", "gaze")
+    channels.append_child("channel").append_child_value("label", "CY").append_child_value("unit", "pixels").append_child_value("type", "gaze")
+    channels.append_child("channel").append_child_value("label", "CS").append_child_value("unit", "integer").append_child_value("type", "gaze")
+
     #bkid
     channels.append_child("channel").append_child_value("label", "BKID").append_child_value("unit", "integer").append_child_value("type", "gaze")
     channels.append_child("channel").append_child_value("label", "BKDUR").append_child_value("unit", "seconds").append_child_value("type", "gaze")
     channels.append_child("channel").append_child_value("label", "BKPMIN").append_child_value("unit", "integer").append_child_value("type", "gaze")
     
-    #cursor
-    channels.append_child("channel").append_child_value("label", "CX").append_child_value("unit", "pixels").append_child_value("type", "gaze")
-    channels.append_child("channel").append_child_value("label", "CY").append_child_value("unit", "pixels").append_child_value("type", "gaze")
-    channels.append_child("channel").append_child_value("label", "CS").append_child_value("unit", "integer").append_child_value("type", "gaze")
 
     #user
     channels.append_child("channel").append_child_value("label", "USER").append_child_value("unit", "integer").append_child_value("type", "gaze")
